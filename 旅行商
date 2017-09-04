@@ -1,0 +1,49 @@
+
+public class Q5 {		
+	public static void main(String[] args) {
+		char[][] cost={{0,2,3,'x','x'},{1,0,1,2,'x'},{3,1,0,2,'x'},{'x',2,2,0,2},{'x','x','x',2,0}};
+		Tool tool=new Tool();
+		tool.arrive=false;
+		int rs=route(0,4,cost).min;
+		System.out.println(rs);
+	}
+	public static Tool route(int start,int end,char[][] cost){
+		int min=Integer.MAX_VALUE;
+		int mark=end;
+		Tool tool=new Tool();
+		tool.min=min;
+		if(cost[start][end]!='x'){
+		min=cost[start][end];
+		
+		}
+			for(int j=start+1;j<cost[start].length;j++)
+			{
+				
+				if(cost[start][j]!='x'){
+				tool=route(j,end,cost);
+				if(min>cost[start][j]+tool.min){
+						if(tool.arrive){
+						min=cost[start][j]+tool.min;
+						mark=j;
+						
+						}
+						
+				}
+				
+				}
+				
+			}
+			tool.min=min;
+			if(mark==end)
+			{
+				tool.arrive=true;
+			}
+		
+		return tool;
+	}
+}
+ class Tool{
+	
+	boolean arrive;
+	int min;
+}
