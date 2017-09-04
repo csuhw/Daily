@@ -1,1 +1,1 @@
-# Wehat
+# WeChat
